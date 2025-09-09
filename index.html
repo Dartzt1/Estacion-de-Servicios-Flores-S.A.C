@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estación de Servicios Flores</title>
+  <meta name="description" content="Gasolinera Andina – Combustibles de calidad, atención rápida y segura. Lima, Perú." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/png" href="img/Logo_flores.png" />
+  
+</head>
+<body>
+  <!-- ====== Header ====== -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">GF</div>
+          <div>
+            <div>Estación de Servicios <span style="color:var(--brand)">Flores</span></div>
+            <small class="tag">Llenamos tu energía</small>
+          </div>
+        </div>
+        <div class="menu" id="menu">
+          <a href="#precios">Precios</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#promos">Promos</a>
+          <a href="#contacto">Contacto</a>
+          <a class="btn" href="login.html">Únete al club</a>
+        </div>
+        <button class="btn secondary hamb" id="hamb" aria-label="Abrir menú">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <span class="tag">Abiertos 24/7 – Calle real Nro. 1512, Chilca</span>
+        <h1>Combustible de calidad, <span style="color:var(--brand)">rápido</span> y <span style="color:var(--brand-2)">seguro</span>.</h1>
+        <p class="lead">En <strong>Gasolinera Andina</strong> te ofrecemos gasolina y diésel de alto rendimiento, tienda de conveniencia, aire y agua gratuitos. Con tecnología de pago sin contacto y control de calidad constante.</p>
+        <div style="display:flex; gap:.8rem; margin-top:1rem">
+          <a class="btn" href="#precios">Ver precios de hoy</a>
+          <a class="btn secondary" href="#contacto">Cómo llegar</a>
+        </div>
+        <div class="metrics" style="margin-top:1.2rem">
+          <div class="metric"><strong>3 min</strong><div>Tiempo promedio</div></div>
+          <div class="metric"><strong>+10K</strong><div>Clientes felices</div></div>
+          <div class="metric"><strong>ISO</strong><div>Control de calidad</div></div>
+        </div>
+      </div>
+      <div class="glass">
+        <img alt="Estación de servicio moderna" src="img/Logo_flores.png" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Precios ====== -->
+  <section id="precios">
+    <div class="container">
+      <h2>Precios de combustibles</h2>
+      <p class="lead">Actualiza manualmente o conéctate a tu sistema de precios. Los valores son de ejemplo en PEN (S/).</p>
+
+      <div class="controls">
+        <label>Filtrar:</label>
+        <select id="filtroTipo">
+          <option value="todos">Todos</option>
+          <option value="gasolina">Gasolina</option>
+          <option value="diesel">Diésel</option>
+        </select>
+        <input id="buscador" type="search" placeholder="Buscar (ej. 95, premium)" />
+        <button class="btn secondary" id="btnReset">Restablecer</button>
+      </div>
+
+      <div class="card" style="padding:1rem">
+        <div style="overflow-x:auto">
+          <table id="tablaPrecios" aria-label="Tabla de precios">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Octanaje</th>
+                <th>Precio x litro</th>
+                <th>Última actualización</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas generadas por JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap">
+        <button class="btn" id="bajar5">Bajar S/ 0.05</button>
+        <button class="btn" id="subir5">Subir S/ 0.05</button>
+        <span class="tag">Tips: usa estos botones para simular cambios diarios.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Servicios ====== -->
+  <section id="servicios">
+    <div class="container">
+      <h2>Servicios</h2>
+      <p class="lead">Todo lo que necesitas en una sola parada.</p>
+      <div class="grid three">
+        <div class="card service">
+          <div class="icon">⛽</div>
+          <div>
+            <strong>Gasolina y Diésel</strong>
+            <p class="lead">Calidad verificada y surtidores de alta precisión.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🛒</div>
+          <div>
+            <strong>Tienda 24/7</strong>
+            <p class="lead">Snacks, bebidas frías y productos para tu auto.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">💳</div>
+          <div>
+            <strong>Pago sin contacto</strong>
+            <p class="lead">Aceptamos tarjetas, billeteras móviles y QR.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🧼</div>
+          <div>
+            <strong>Lavado rápido</strong>
+            <p class="lead">Limpieza express con productos biodegradables.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🌬️</div>
+          <div>
+            <strong>Aire y Agua</strong>
+            <p class="lead">Gratuitos para clientes registrados.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🔧</div>
+          <div>
+            <strong>Chequeo rápido</strong>
+            <p class="lead">Presión de llantas, niveles y luces en minutos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Promos / CTA ====== -->
+  <section id="promos">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Únete al club Flores</h2>
+          <p class="lead">Acumula puntos y ahorra hasta <strong>S/ 0.50</strong> por litro. Promo bienvenida el primer mes.</p>
+        </div>
+        <a class="btn" href="register.html">Quiero registrarme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contacto / Mapa ====== -->
+  <section id="contacto">
+    <div class="container grid two">
+      <div class="card" style="padding:1rem">
+        <h2>Contáctanos</h2>
+        <form id="formContacto" class="grid" style="gap:.8rem">
+          <input name="nombre" placeholder="Tu nombre" required />
+          <input name="telefono" placeholder="Teléfono" required />
+          <input name="correo" type="email" placeholder="Correo" required />
+          <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          <label><input type="checkbox" required /> Acepto la política de privacidad</label>
+          <button class="btn" type="submit">Enviar</button>
+          <small id="estadoForm" class="tag" aria-live="polite"></small>
+        </form>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden">
+        <div style="aspect-ratio:16/9; background:#0b1220">
+          <!-- Reemplaza la URL del iframe con tu mapa de Google Maps Embed -->
+          <iframe title="Mapa" width="100%" height="128%" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243.83321884529968!2d-75.19744802434703!3d-12.08944320060463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x910e9703bb08f80f%3A0x5b0a8d1ff687bc6e!2sSUPER%20GRIFO%20FLORES%20SAC!5e0!3m2!1ses-419!2spe!4v1757386959057!5m2!1ses-419!2spe">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer>
+    <div class="container" style="display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap">
+      <div>© <span id="anio"></span> Estación de servicios flores S.A.C.</div>
+      <div class="tag">RUC 20568161948 • Huancayo, Perú</div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
