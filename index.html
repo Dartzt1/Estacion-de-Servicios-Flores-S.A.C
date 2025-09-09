@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gasolinera Andina</title>
+  <meta name="description" content="Gasolinera Andina – Combustibles de calidad, atención rápida y segura. Lima, Perú." />
+  <style>
+    /* ====== Estilos base ====== */
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --card:#111827;        /* gray-900 */
+      --text:#e5e7eb;        /* gray-200 */
+      --muted:#94a3b8;       /* slate-400 */
+      --brand:#22c55e;       /* green-500 */
+      --brand-2:#06b6d4;     /* cyan-500 */
+      --accent:#f59e0b;      /* amber-500 */
+      --danger:#ef4444;      /* red-500 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing: border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"}
+    img{max-width:100%; display:block}
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:0 1rem}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#001b0f; padding:.9rem 1.2rem; border-radius:999px; font-weight:700; border:none; cursor:pointer; box-shadow:var(--shadow)}
+    .btn.secondary{background:#1f2937; color:var(--text); border:1px solid #334155}
+    .tag{display:inline-block; padding:.25rem .6rem; border-radius:999px; background:#0b1220; border:1px solid #20304d; color:var(--muted); font-size:.78rem}
+    .card{background:linear-gradient(180deg,#0b1220,#0a1222); border:1px solid #1f2937; border-radius:var(--radius); box-shadow:var(--shadow)}
+    .grid{display:grid; gap:1.2rem}
+    .two{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .three{grid-template-columns: repeat(3, minmax(0,1fr))}
+
+    /* ====== Header / Nav ====== */
+    header{position:sticky; top:0; z-index:50; backdrop-filter: blur(10px); background: rgba(10, 18, 34, .65); border-bottom:1px solid #1f2937}
+    nav{display:flex; align-items:center; justify-content:space-between; padding:.8rem 0}
+    .brand{display:flex; align-items:center; gap:.7rem; font-weight:900; letter-spacing:.3px}
+    .brand .logo{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:conic-gradient(from 220deg, var(--brand), var(--brand-2)); color:#001b0f; font-weight:900}
+    .menu{display:flex; gap:1rem}
+    .menu a{padding:.5rem .8rem; border-radius:10px}
+    .menu a:hover{background:#0b1220}
+    .hamb{display:none}
+
+    /* ====== Hero ====== */
+    .hero{padding:4rem 0 3rem}
+    .hero .wrap{display:grid; gap:2rem; grid-template-columns: 1.1fr .9fr; align-items:center}
+    .hero h1{font-size: clamp(2rem, 3vw + .5rem, 3rem); margin:.4rem 0}
+    .hero p{color:var(--muted); line-height:1.7}
+    .hero .glass{border-radius: var(--radius); padding:1rem; border:1px solid #1f2937; background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));}
+    .metrics{display:flex; gap:1rem; flex-wrap:wrap}
+    .metric{flex:1 1 140px; text-align:center; padding:1rem; background:#0b1220; border:1px solid #1f2937; border-radius:16px}
+    .metric strong{font-size:1.4rem}
+
+    /* ====== Secciones ====== */
+    section{padding:3rem 0}
+    h2{font-size: clamp(1.4rem, 2vw + .3rem, 2.2rem); margin:0 0 1rem}
+    .lead{color:var(--muted)}
+
+    /* ====== Tabla de precios ====== */
+    .controls{display:flex; gap:.6rem; align-items:center; flex-wrap:wrap; margin-bottom:1rem}
+    .controls input, .controls select{background:#0b1220; border:1px solid #1f2937; color:var(--text); padding:.6rem .7rem; border-radius:12px}
+    table{width:100%; border-collapse: collapse; overflow:hidden; border-radius:14px}
+    thead{background:#0b1220}
+    th, td{padding: .9rem .8rem; border-bottom:1px solid #1f2937; text-align:left}
+    tbody tr:hover{background:#0a1626}
+    .price{font-weight:800; color:var(--accent)}
+    .pill{padding:.2rem .5rem; border-radius:999px; background:#0f1a2c; border:1px solid #1e2a44; font-size:.78rem; color:#93c5fd}
+
+    /* ====== Servicios ====== */
+    .service{padding:1rem; display:flex; gap:1rem; align-items:flex-start}
+    .icon{width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:#0b1220; border:1px solid #1f2937}
+
+    /* ====== Promos / CTA ====== */
+    .cta{display:flex; gap:1rem; align-items:center; justify-content:space-between; padding:1.2rem 1.2rem; border-radius:var(--radius); border:1px solid #1f2937; background: radial-gradient(1200px 500px at 10% 10%, rgba(34,197,94,.15), transparent), radial-gradient(1200px 500px at 90% 20%, rgba(6,182,212,.15), transparent)}
+
+    /* ====== Footer ====== */
+    footer{padding:2rem 0; border-top:1px solid #1f2937; color:var(--muted)}
+
+    /* ====== Responsivo ====== */
+    @media (max-width: 980px){
+      .hero .wrap{grid-template-columns: 1fr}
+      .two{grid-template-columns: 1fr}
+      .three{grid-template-columns: 1fr}
+      .menu{display:none}
+      .hamb{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== Header ====== -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <div class="logo">GA</div>
+          <div>
+            <div>Gasolinera <span style="color:var(--brand)">Andina</span></div>
+            <small class="tag">Llenamos tu energía</small>
+          </div>
+        </div>
+        <div class="menu" id="menu">
+          <a href="#precios">Precios</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#promos">Promos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <button class="btn secondary hamb" id="hamb" aria-label="Abrir menú">☰</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====== Hero ====== -->
+  <section class="hero">
+    <div class="container wrap">
+      <div>
+        <span class="tag">Abiertos 24/7 – Av. Principal 123, Lima</span>
+        <h1>Combustible de calidad, <span style="color:var(--brand)">rápido</span> y <span style="color:var(--brand-2)">seguro</span>.</h1>
+        <p class="lead">En <strong>Gasolinera Andina</strong> te ofrecemos gasolina y diésel de alto rendimiento, tienda de conveniencia, aire y agua gratuitos. Con tecnología de pago sin contacto y control de calidad constante.</p>
+        <div style="display:flex; gap:.8rem; margin-top:1rem">
+          <a class="btn" href="#precios">Ver precios de hoy</a>
+          <a class="btn secondary" href="#contacto">Cómo llegar</a>
+        </div>
+        <div class="metrics" style="margin-top:1.2rem">
+          <div class="metric"><strong>3 min</strong><div>Tiempo promedio</div></div>
+          <div class="metric"><strong>+10K</strong><div>Clientes felices</div></div>
+          <div class="metric"><strong>ISO</strong><div>Control de calidad</div></div>
+        </div>
+      </div>
+      <div class="glass">
+        <img alt="Estación de servicio moderna" src="https://images.unsplash.com/photo-1542367597-8849eb47a08d?q=80&w=1600&auto=format&fit=crop" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Precios ====== -->
+  <section id="precios">
+    <div class="container">
+      <h2>Precios de combustibles</h2>
+      <p class="lead">Actualiza manualmente o conéctate a tu sistema de precios. Los valores son de ejemplo en PEN (S/).</p>
+
+      <div class="controls">
+        <label>Filtrar:</label>
+        <select id="filtroTipo">
+          <option value="todos">Todos</option>
+          <option value="gasolina">Gasolina</option>
+          <option value="diesel">Diésel</option>
+        </select>
+        <input id="buscador" type="search" placeholder="Buscar (ej. 95, premium)" />
+        <button class="btn secondary" id="btnReset">Restablecer</button>
+      </div>
+
+      <div class="card" style="padding:1rem">
+        <div style="overflow-x:auto">
+          <table id="tablaPrecios" aria-label="Tabla de precios">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Tipo</th>
+                <th>Octanaje</th>
+                <th>Precio x litro</th>
+                <th>Última actualización</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Filas generadas por JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap">
+        <button class="btn" id="bajar5">Bajar S/ 0.05</button>
+        <button class="btn" id="subir5">Subir S/ 0.05</button>
+        <span class="tag">Tips: usa estos botones para simular cambios diarios.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Servicios ====== -->
+  <section id="servicios">
+    <div class="container">
+      <h2>Servicios</h2>
+      <p class="lead">Todo lo que necesitas en una sola parada.</p>
+      <div class="grid three">
+        <div class="card service">
+          <div class="icon">⛽</div>
+          <div>
+            <strong>Gasolina y Diésel</strong>
+            <p class="lead">Calidad verificada y surtidores de alta precisión.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🛒</div>
+          <div>
+            <strong>Tienda 24/7</strong>
+            <p class="lead">Snacks, bebidas frías y productos para tu auto.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">💳</div>
+          <div>
+            <strong>Pago sin contacto</strong>
+            <p class="lead">Aceptamos tarjetas, billeteras móviles y QR.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🧼</div>
+          <div>
+            <strong>Lavado rápido</strong>
+            <p class="lead">Limpieza express con productos biodegradables.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🌬️</div>
+          <div>
+            <strong>Aire y Agua</strong>
+            <p class="lead">Gratuitos para clientes registrados.</p>
+          </div>
+        </div>
+        <div class="card service">
+          <div class="icon">🔧</div>
+          <div>
+            <strong>Chequeo rápido</strong>
+            <p class="lead">Presión de llantas, niveles y luces en minutos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Promos / CTA ====== -->
+  <section id="promos">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Únete al club Andina</h2>
+          <p class="lead">Acumula puntos y ahorra hasta <strong>S/ 0.30</strong> por litro. Promo bienvenida el primer mes.</p>
+        </div>
+        <a class="btn" href="#contacto">Quiero registrarme</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Contacto / Mapa ====== -->
+  <section id="contacto">
+    <div class="container grid two">
+      <div class="card" style="padding:1rem">
+        <h2>Contáctanos</h2>
+        <form id="formContacto" class="grid" style="gap:.8rem">
+          <input name="nombre" placeholder="Tu nombre" required />
+          <input name="telefono" placeholder="Teléfono" required />
+          <input name="correo" type="email" placeholder="Correo" required />
+          <textarea name="mensaje" rows="4" placeholder="¿En qué podemos ayudarte?" required></textarea>
+          <label><input type="checkbox" required /> Acepto la política de privacidad</label>
+          <button class="btn" type="submit">Enviar</button>
+          <small id="estadoForm" class="tag" aria-live="polite"></small>
+        </form>
+      </div>
+      <div class="card" style="padding:0; overflow:hidden">
+        <div style="aspect-ratio:16/9; background:#0b1220">
+          <!-- Reemplaza la URL del iframe con tu mapa de Google Maps Embed -->
+          <iframe title="Mapa" width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.205701315586!2d-77.0428!3d-12.0922!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8be5c7f8d5b%3A0x7a7a7a7a7a7a7a7a!2sLima%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1687999999999">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; gap:1rem; justify-content:space-between; align-items:center; flex-wrap:wrap">
+      <div>© <span id="anio"></span> Gasolinera Andina. Todos los derechos reservados.</div>
+      <div class="tag">RUC 00000000000 • Lima, Perú</div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== Datos de ejemplo de precios ======
+    const datosPrecios = [
+      {producto: 'Gasolina Regular', tipo:'gasolina', octanaje: 90, precio: 17.29, updated: '2025-09-08 08:00'},
+      {producto: 'Gasolina Premium', tipo:'gasolina', octanaje: 95, precio: 19.10, updated: '2025-09-08 08:00'},
+      {producto: 'Gasolina Súper', tipo:'gasolina', octanaje: 97, precio: 20.20, updated: '2025-09-08 08:00'},
+      {producto: 'Diésel B5 S50', tipo:'diesel', octanaje: '-', precio: 16.80, updated: '2025-09-08 08:00'},
+      {producto: 'Diésel Premium', tipo:'diesel', octanaje: '-', precio: 17.40, updated: '2025-09-08 08:00'},
+    ];
+
+    const tbody = document.querySelector('#tablaPrecios tbody');
+    const filtroTipo = document.getElementById('filtroTipo');
+    const buscador = document.getElementById('buscador');
+    const btnReset = document.getElementById('btnReset');
+
+    function dibujarTabla(){
+      const q = (buscador.value || '').toLowerCase().trim();
+      const t = filtroTipo.value;
+      tbody.innerHTML = '';
+      datosPrecios
+        .filter(r => t==='todos' ? true : r.tipo===t)
+        .filter(r => !q || [r.producto, String(r.octanaje), r.tipo].join(' ').toLowerCase().includes(q))
+        .forEach((r, i) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${r.producto}</td>
+            <td><span class="pill">${r.tipo}</span></td>
+            <td>${r.octanaje}</td>
+            <td class="price">S/ ${r.precio.toFixed(2)}</td>
+            <td><small class="tag">${r.updated}</small></td>
+            <td><button class="btn secondary" data-i="${i}">Editar</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+    }
+
+    dibujarTabla();
+
+    filtroTipo.addEventListener('change', dibujarTabla);
+    buscador.addEventListener('input', dibujarTabla);
+    btnReset.addEventListener('click', ()=>{filtroTipo.value='todos'; buscador.value=''; dibujarTabla();});
+
+    // Simular subidas/bajadas rápidas
+    const subir = document.getElementById('subir5');
+    const bajar = document.getElementById('bajar5');
+    function ajustar(delta){
+      const ahora = new Date().toLocaleString('es-PE', {hour12:false});
+      datosPrecios.forEach(r=>{ r.precio = Math.max(0, r.precio + delta); r.updated = ahora; });
+      dibujarTabla();
+    }
+    subir.addEventListener('click', ()=> ajustar(0.05));
+    bajar.addEventListener('click', ()=> ajustar(-0.05));
+
+    // Editar una fila (prompt simple para demo)
+    tbody.addEventListener('click', (e)=>{
+      const btn = e.target.closest('button[data-i]');
+      if(!btn) return;
+      const i = Number(btn.dataset.i);
+      const nuevo = prompt(`Nuevo precio para ${datosPrecios[i].producto} (S/):`, datosPrecios[i].precio.toFixed(2));
+      if(nuevo===null) return;
+      const val = Number(nuevo.replace(',', '.'));
+      if(Number.isFinite(val) && val>=0){
+        datosPrecios[i].precio = val;
+        datosPrecios[i].updated = new Date().toLocaleString('es-PE', {hour12:false});
+        dibujarTabla();
+      } else {
+        alert('Ingresa un número válido.');
+      }
+    });
+
+    // ====== Formulario ======
+    const form = document.getElementById('formContacto');
+    const estado = document.getElementById('estadoForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      // Simulación de envío
+      estado.textContent = 'Enviando…';
+      setTimeout(()=>{
+        console.log('Formulario:', data);
+        estado.textContent = '¡Gracias! Responderemos pronto.';
+        form.reset();
+      }, 800);
+    });
+
+    // ====== Utilidades ======
+    document.getElementById('anio').textContent = new Date().getFullYear();
+
+    // Menú móvil
+    const hamb = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    hamb.addEventListener('click', ()=>{
+      const visible = window.getComputedStyle(menu).display !== 'none';
+      menu.style.display = visible ? 'none' : 'flex';
+      menu.style.flexDirection = 'column';
+      menu.style.gap = '.6rem';
+    });
+
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+  </script>
+</body>
+</html>
